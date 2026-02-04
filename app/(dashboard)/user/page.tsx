@@ -25,12 +25,6 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
           Dashboard
         </h1>
-        <button
-          onClick={() => logout()}
-          className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 transition"
-        >
-          Logout
-        </button>
       </header>
 
       {user.role === "superadmin" ? (
