@@ -1,7 +1,7 @@
 // lib/api.ts
 import axios from "axios";
 
-// Base instance for Laravel backend
+// Base instance for local Laravel backend
 const api = axios.create({
   baseURL: "http://localhost:8001/api",
   headers: {
