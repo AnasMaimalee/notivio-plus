@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import ThemeToggle from "@/app/components/theme-toggle";
+import Contact from "../sections/Contact";
+import Footer from "../components/layout/Footer";
 
 export default function LandingPage() {
   return (
@@ -126,43 +128,66 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ABOUT ME + PROJECTS */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 py-24">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">About me</h2>
-            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              I’m <strong>Anas Abdussalam</strong>, a frontend-focused developer
-              passionate about building thoughtful, human-centered products.
-              I enjoy turning complex ideas into clean, usable interfaces.
-            </p>
-          </div>
+    {/* ABOUT ME + PROJECTS */}
+    <section className="">
+    <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+        
+        {/* ABOUT ME */}
+        <div>
+        <h2 className="text-3xl font-bold mb-6 text-emerald-600 dark:text-emerald-400">
+            About Me
+        </h2>
+        <p className="text-neutral-800 dark:text-neutral-200 leading-relaxed mb-6">
+            I’m <strong>Anas Abdussalam</strong>, a <strong>full-stack developer</strong> passionate about building
+            thoughtful, human-centered applications.  
+            I specialize in <strong>React, Vue, Next.js, PHP, and Laravel</strong>, and enjoy turning complex ideas
+            into clean, usable interfaces.  
+            I also have experience in <strong>UI/UX design</strong>, <strong>HR systems</strong>, and
+            <strong> JAMB third-party software</strong>.
+        </p>
 
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Projects I’ve worked on</h3>
-            <ul className="space-y-4 text-neutral-600 dark:text-neutral-400">
-              <li>• Role-based dashboard systems with Vue & Nuxt</li>
-              <li>• Fintech interfaces for transactions and receipts</li>
-            </ul>
-          </div>
+        {/* SKILL BADGES */}
+        <div className="flex flex-wrap gap-3">
+            {["React", "Vue", "Next.js", "PHP", "Laravel",].map(skill => (
+            <span
+                key={skill}
+                className="px-4 py-2 bg-emerald-100 dark:bg-emerald-700 text-emerald-600 dark:text-emerald-200 font-semibold rounded-full text-sm"
+            >
+                {skill}
+            </span>
+            ))}
         </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-neutral-200 dark:border-neutral-800 py-12">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-6">
-          <p className="text-sm text-neutral-500">
-            © {new Date().getFullYear()} Notivio. All rights reserved.
-          </p>
-
-          <div className="flex gap-6 text-sm">
-            <Link href="#" className="hover:text-emerald-600">About</Link>
-            <Link href="#" className="hover:text-emerald-600">Contact</Link>
-            <Link href="#" className="hover:text-emerald-600">Privacy</Link>
-          </div>
         </div>
-      </footer>
 
+        {/* PROJECTS */}
+        <div>
+        <h3 className="text-2xl font-semibold mb-6 text-emerald-600 dark:text-emerald-400">
+            Projects I’ve Worked On
+        </h3>
+        <ul className="space-y-4">
+            {[
+            "Role-based dashboard systems with Vue, & Laravel",
+            "Fintech interfaces for transactions and receipts",
+            "HR management systems and internal tools",
+            "JAMB third-party software integrations",
+            ].map(project => (
+            <li
+                key={project}
+                className="flex items-center gap-3 text-neutral-800 dark:text-neutral-200"
+            >
+                <span className="w-3 h-3 rounded-full bg-emerald-600 dark:bg-emerald-400 flex-shrink-0 mt-1"></span>
+                {project}
+            </li>
+            ))}
+        </ul>
+        </div>
+
+    </div>
+    </section>
+
+
+     <Contact />
+    <Footer />
     </main>
   );
 }
