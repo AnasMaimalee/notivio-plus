@@ -2,35 +2,42 @@
 import { create } from "zustand";
 import api from "../utils/api";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;
   role: string;
 }
 
-interface Theme {
+export interface Theme {
   primary: string;
   secondary: string;
 }
 
-interface Menu {
+export interface Menu {
   label: string;
   icon?: string;
   route: string;
 }
 
-interface AuthState {
+export interface AuthState {
   user: User | null;
   token: string | null;
   menus: Menu[];
   theme: Theme;
   permissions: string[];
   loading: boolean;
+
+  // Actions
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   restore: () => void;
-}export const useAuth = create<AuthState>((set, get) => ({
+  updateUser: (user: User) => void;
+  setAuth: (user: User, token: string) => void; // for register or manual set
+  isAuthenticated: () => boolean;
+}
+
+export const useAuth = create<AuthState>((set, get) => ({
   user: null,
   token: null,
   menus: [],
@@ -92,10 +99,16 @@ interface AuthState {
     }
   },
 
-  isAuthenticated: () => !!get().user && !!get().token,
-
   updateUser: (user: User) => {
     localStorage.setItem("user", JSON.stringify(user));
     set({ user });
   },
+
+  setAuth: (user: User, token: string) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+    set({ user, token });
+  },
+
+  isAuthenticated: () => !!get().user && !!get().token,
 }));

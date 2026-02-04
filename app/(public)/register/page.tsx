@@ -8,7 +8,7 @@ import { useAuth } from "@/app/stores/useAuth";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { setUser } = useAuth();
+  const { setAuth } = useAuth(); // use setAuth instead of setUser
 
   const [form, setForm] = useState({
     name: "",
@@ -29,22 +29,15 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      // Axios POST request using your api instance
       const res = await api.post("/auth/register", form);
-
-      // Laravel should return { user: ..., token: ... }
       const { user, token } = res.data;
 
-      // Store token in localStorage for future requests
-      localStorage.setItem("token", token);
-
-      // Set user in Zustand store
-      setUser(user, token);
+      // Store token and user in Zustand
+      setAuth(user, token);
 
       // Redirect to dashboard
       router.push("/dashboard");
     } catch (err: any) {
-      // Axios error handling
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
