@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Floating objects */
+.floating-objects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.floating-object {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  animation: floatObj linear infinite;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.floating-object.pencil { top: 10%; left: 20%; animation-duration: 15s; }
+.floating-object.notebook { top: 40%; left: 70%; animation-duration: 20s; }
+.floating-object.recorder { top: 60%; left: 30%; animation-duration: 18s; }
+.floating-object.crayon { top: 80%; left: 50%; animation-duration: 22s; }
+.floating-object.paper { top: 25%; left: 40%; animation-duration: 17s; }
+
+@keyframes floatObj {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
