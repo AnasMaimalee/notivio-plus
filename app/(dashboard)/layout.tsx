@@ -1,7 +1,6 @@
-import "@/styles/globals.css"
-import Sidebar from "@/components/layout/Sidebar"
-import Topbar from "@/components/layout/Topbar"
-
+import "../globals.css"
+import Sidebar from "../components/layout/Sidebar"
+import Topbar from "../components/layout/TopBar"
 export default function DashboardLayout({
   children,
 }: {
